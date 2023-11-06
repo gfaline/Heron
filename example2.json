@@ -1,0 +1,54 @@
+{
+    "transactions": [
+        {
+            "description": "Spotify",
+            "amount": -14.99,
+            "date": "2021-01-29"
+        },
+        {
+            "description": "Spotify",
+            "amount": -14.99,
+            "date": "2020-12-29"
+        },
+        {
+            "description": "Spotify",
+            "amount": -14.99,
+            "date": "2020-11-29"
+        },
+        {
+            "description": "Spotify",
+            "amount": -14.99,
+            "date": "2020-10-29"
+        },
+        {
+            "description": "Netflix",
+            "amount": -20.00,
+            "date": "2020-02-15"
+        },
+        {
+            "description": "Netflix",
+            "amount": -20.00,
+            "date": "2020-03-14"
+        },
+        {
+            "description": "Netflix",
+            "amount": -20.00,
+            "date": "2020-04-16"
+        },
+        {
+            "description": "Netflix",
+            "amount": -20.00,
+            "date": "2020-05-15"
+        },
+        {
+            "description": "Aug2020 Acme Corp Salary",
+            "amount": 4000.00,
+            "date": "2020-08-01"
+        },
+        {
+            "description": "Sep2020 Acme Corp Salary",
+            "amount": 4000.00,
+            "date": "2020-09-01"
+        }
+    ]
+}
