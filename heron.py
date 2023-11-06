@@ -44,8 +44,8 @@ def periodicity(transactions, names):
 
             if daily or weekly or monthly:
                 recurring.append(groups[name])
-    print(recurring)
-    print(len(recurring))
+    # print(recurring)
+    # print(len(recurring))
     return recurring
 
 
