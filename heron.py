@@ -2,7 +2,6 @@ import json
 import datetime
 from scipy.spatial import distance
 from difflib import SequenceMatcher
-# from itertools import pairwise
 
 
 def string_similarity(str_1, str_2):
@@ -24,26 +23,27 @@ def periodicity(transactions, names):
     for name in names:
         for transaction in transactions:
             if name in transaction["description"]:
-                #date = datetime.datetime(transaction["date"])
+                # date = datetime.datetime(transaction["date"])
                 date = datetime.datetime(int(transaction["date"].split("-")[0]), int(transaction["date"].split("-")[1]), int(transaction["date"].split("-")[2]))
                 if name in times:
                     times[name].append(date)
                     groups[name].append(transaction)
                 else:
-                    times[name]=[date]
-                    groups[name]=[transaction]
+                    times[name] = [date]
+                    groups[name] = [transaction]
     recurring = []
     for name in times:
         time_differences = []
-        for i in range(len(times) - 2):
-            time_differences.append((time_differences[i + 1] - time_differences[i]).days)
+        if len(times[name]) > 2:
+            for i in range(len(times[name]) - 1):
+                time_differences.append((times[name][i + 1] - times[name][i]).days)
 
-        daily = all(difference >= 1 and difference < 2 for difference in time_differences)
-        weekly = all(difference >= 5 and difference < 9 for difference in time_differences)
-        monthly = all(difference >= 21 and difference < 39 for difference in time_differences)
+            daily = all(difference >= 1 and difference < 2 for difference in time_differences)
+            weekly = all(difference >= 5 and difference < 9 for difference in time_differences)
+            monthly = all(difference >= 21 and difference < 39 for difference in time_differences)
 
-        if daily or weekly or monthly:
-            recurring.append(groups[name])
+            if daily or weekly or monthly:
+                recurring.append(groups[name])
     print(recurring)
     print(len(recurring))
     return recurring
@@ -78,12 +78,14 @@ def identify_recurring_transactions(transactions):
     # print(identify_descriptors)
     # print(len(list(identify_descriptors.keys())))
     events = periodicity(transactions, list(identify_descriptors.keys()))
+    return events
 
 
 def main():
     with open('example.json') as f:
         data = json.load(f)
-    identify_recurring_transactions(data['transactions'])
+
+    events = identify_recurring_transactions(data['transactions'])
 
 
 if __name__ == '__main__':
