@@ -38,9 +38,9 @@ def periodicity(transactions, names):
             for i in range(len(times[name]) - 1):
                 time_differences.append((times[name][i + 1] - times[name][i]).days)
 
-            daily = all(difference >= 1 and difference < 2 for difference in time_differences)
-            weekly = all(difference >= 5 and difference < 9 for difference in time_differences)
-            monthly = all(difference >= 21 and difference < 39 for difference in time_differences)
+            daily = all(abs(difference) >= 1 and abs(difference) < 2 for difference in time_differences)
+            weekly = all(abs(difference) >= 5 and abs(difference) < 9 for difference in time_differences)
+            monthly = all(abs(difference) >= 21 and abs(difference) < 39 for difference in time_differences)
 
             if daily or weekly or monthly:
                 recurring.append(groups[name])
